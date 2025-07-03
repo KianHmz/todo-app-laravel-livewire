@@ -13,3 +13,8 @@ Route::get('/register', function () {
 Route::get('/password/request', function () {
     return view('welcome');
 })->name('password.request');
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+})->name('dashboard.index');
