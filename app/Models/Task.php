@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    //
+    protected $guarded = [];
+
+    public function folder()
+    {
+        $this->belongsTo(Folder::class);
+    }
 }
