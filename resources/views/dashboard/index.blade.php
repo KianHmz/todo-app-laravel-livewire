@@ -6,52 +6,29 @@
         <h2 :class="isDark ? 'text-indigo-400' : 'text-indigo-600'" class="text-2xl font-semibold mb-6">Folders</h2>
         <ul class="flex-1 overflow-auto space-y-3">
 
-            <li :class="isDark
-                ?
-                'text-gray-200 hover:bg-indigo-900' :
-                'text-gray-800 hover:bg-indigo-100'"
-                class="flex justify-between items-center p-3 rounded-md transition-colors duration-200 font-semibold text-lg shadow-sm shadow-indigo-900">
-                Work
-                <span class="font-semibold" x-text="folder"></span>
-                <div class="flex space-x-2">
-                    <button :class="isDark ? 'text-indigo-400' : 'text-indigo-600'"
-                        class="text-sm font-semibold hover:underline">Edit</button>
-                    <button class="text-red-500 text-sm font-semibold hover:underline">Delete</button>
-                </div>
-            </li>
-
-            <li :class="isDark
-                ?
-                'text-gray-200 hover:bg-indigo-900' :
-                'text-gray-800 hover:bg-indigo-100'"
-                class="flex justify-between items-center p-3 rounded-md transition-colors duration-200 font-semibold text-lg">
-                Personal
-                <span class="font-semibold" x-text="folder"></span>
-                <div class="flex space-x-2">
-                    <button :class="isDark ? 'text-indigo-400' : 'text-indigo-600'"
-                        class="text-sm font-semibold hover:underline">Edit</button>
-                    <button class="text-red-500 text-sm font-semibold hover:underline">Delete</button>
-                </div>
-            </li>
-
-            <li :class="isDark
-                ?
-                'text-gray-200 hover:bg-indigo-900' :
-                'text-gray-800 hover:bg-indigo-100'"
-                class="flex justify-between items-center p-3 rounded-md transition-colors duration-200 font-semibold text-lg">
-                Shopping
-                <span class="font-semibold" x-text="folder"></span>
-                <div class="flex space-x-2">
-                    <button :class="isDark ? 'text-indigo-400' : 'text-indigo-600'"
-                        class="text-sm font-semibold hover:underline">Edit</button>
-                    <button class="text-red-500 text-sm font-semibold hover:underline">Delete</button>
-                </div>
-            </li>
+            @foreach ($folders as $folder)
+                <a href="{{ route('dashboard.index', $folder->id) }}"
+                    :class="isDark
+                        ?
+                        'text-gray-200 hover:bg-indigo-900' :
+                        'text-gray-800 hover:bg-indigo-100'"
+                    class="flex justify-between items-center p-3 rounded-md transition-colors duration-200 font-semibold text-lg
+                    {{ request()->route('folder')?->id === $folder->id ? 'shadow-sm shadow-indigo-900' : '' }}">
+                    {{ $folder->title }}
+                    <span class="font-semibold" x-text="folder"></span>
+                    <div class="flex space-x-2">
+                        <button :class="isDark ? 'text-indigo-400' : 'text-indigo-600'"
+                            class="text-sm font-semibold hover:underline">Edit</button>
+                        <button class="text-red-500 text-sm font-semibold hover:underline">Delete</button>
+                    </div>
+                </a>
+            @endforeach
 
         </ul>
 
-        <div class="mt-6 flex space-x-3">
-            <input type="text" placeholder="New Folder"
+        <form method="POST" action="{{ route('folders.store') }}" class="mt-6 flex space-x-3">
+            @csrf
+            <input type="text" name="title" placeholder="New Folder" required
                 :class="isDark
                     ?
                     'bg-gray-700 border-gray-600 text-gray-300' :
@@ -60,7 +37,7 @@
             <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 rounded-md transition-colors duration-200">
                 Add
             </button>
-        </div>
+        </form>
     </aside>
 
     <!-- Main content -->
@@ -84,7 +61,9 @@
             <x-theme-toggler />
         </div>
 
-        <h1 :class="isDark ? 'text-indigo-400' : 'text-indigo-600'" class="text-3xl font-bold mb-8">Work</h1>
+        <h1 :class="isDark ? 'text-indigo-400' : 'text-indigo-600'" class="text-3xl font-bold mb-8">
+            {{ $folderTitle }}
+        </h1>
 
         <ul class="space-y-5 flex-1 overflow-auto">
             <li :class="isDark
@@ -124,7 +103,7 @@
         </ul>
 
         <form class="mt-8 flex space-x-4" onsubmit="return false;">
-            <input type="text" placeholder="New Task"
+            <input type="text" placeholder="New Task" required
                 :class="isDark
                     ?
                     'bg-gray-700 border-gray-600 text-gray-300' :

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FolderController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/login', function () {
@@ -15,6 +17,9 @@ Route::get('/password/request', function () {
 })->name('password.request');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->name('dashboard.index');
+Route::get('/dashboard/{folder}', [DashboardController::class, 'index'])->name('dashboard.index');
+// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+
+
+Route::resource('folders', FolderController::class)->only(['store', 'edit', 'update', 'destroy']);
