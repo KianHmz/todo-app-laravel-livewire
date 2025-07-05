@@ -98,7 +98,11 @@
                             class="text-sm font-semibold hover:underline cursor-pointer edit-task-btn"
                             data-id="{{ $task->id }}" data-title="{{ $task->title }}">Edit</a>
 
-                        <button class="text-red-500 text-sm font-semibold hover:underline">Delete</button>
+                        <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-500 text-sm font-semibold hover:underline cursor-pointer">Delete</button>
+                        </form>
                     </div>
 
                 </li>
