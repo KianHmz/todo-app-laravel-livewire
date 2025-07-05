@@ -13,7 +13,7 @@ class DashboardController extends Controller
     public function index(Folder $folder)
     {
         $folders = Folder::all();
-        $tasks = Task::all();
+        $tasks = Task::where('folder_id',$folder->id)->get();
         return view(
             'dashboard.index',
             [
