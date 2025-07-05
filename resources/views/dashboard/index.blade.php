@@ -79,26 +79,28 @@
                         @csrf
                         @method('PUT')
                         <button type="submit">
-                        <label class="flex items-center space-x-4 cursor-pointer">
-                            <input name="status" type="checkbox" value="1"
-                                {{ $task->status === 1 ? 'checked' : '' }}
-                                :class="isDark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-300'"
-                                class="w-6 h-6 text-indigo-500 rounded" />
+                            <label class="flex items-center space-x-4 cursor-pointer">
+                                <input name="status" type="checkbox" value="1"
+                                    {{ $task->status === 1 ? 'checked' : '' }}
+                                    :class="isDark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-300'"
+                                    class="w-6 h-6 text-indigo-500 rounded" />
 
-                            <span type="submit"
-                                class="{{ $task->status === 1 ? 'line-through' : '' }} text-lg select-none">
-                                {{ $task->title }}
-                            </span>
-                        </label>
+                                <span type="submit"
+                                    class="{{ $task->status === 1 ? 'line-through' : '' }} text-lg select-none">
+                                    {{ $task->title }}
+                                </span>
+                            </label>
                         </button>
-
                     </form>
 
                     <div class="flex space-x-4">
-                        <button :class="isDark ? 'text-indigo-400' : 'text-indigo-600'"
-                            class="text-sm font-semibold hover:underline">Edit</button>
+                        <a :class="isDark ? 'text-indigo-400' : 'text-indigo-600'"
+                            class="text-sm font-semibold hover:underline cursor-pointer edit-task-btn"
+                            data-id="{{ $task->id }}" data-title="{{ $task->title }}">Edit</a>
+
                         <button class="text-red-500 text-sm font-semibold hover:underline">Delete</button>
                     </div>
+
                 </li>
             @endforeach
 

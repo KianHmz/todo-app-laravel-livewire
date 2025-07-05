@@ -27,11 +27,6 @@ class TaskController extends Controller
         return redirect()->back();
     }
 
-    public function edit(Task $task)
-    {
-        //
-    }
-
     public function update(Request $request, Task $task)
     {
         $task->status = $request->input('status');

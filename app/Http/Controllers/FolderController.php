@@ -18,11 +18,6 @@ class FolderController extends Controller
         return redirect()->back();
     }
 
-    public function edit(Folder $folder)
-    {
-        //
-    }
-
     public function update(Request $request, Folder $folder)
     {
         //
