@@ -34,7 +34,8 @@
                     'bg-gray-700 border-gray-600 text-gray-300' :
                     'bg-white border border-gray-300 text-gray-900'"
                 class="flex-1 px-3 py-2 rounded-md" />
-            <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 rounded-md transition-colors duration-200">
+            <button type="submit"
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 rounded-md transition-colors duration-200">
                 Add
             </button>
         </form>
@@ -62,54 +63,58 @@
         </div>
 
         <h1 :class="isDark ? 'text-indigo-400' : 'text-indigo-600'" class="text-3xl font-bold mb-8">
-            {{ $folderTitle }}
+            {{ request()->route('folder')?->title }}
         </h1>
 
         <ul class="space-y-5 flex-1 overflow-auto">
-            <li :class="isDark
-                ?
-                'bg-gray-800 border-gray-700 text-gray-300' :
-                'bg-gray-100 border-gray-200 text-gray-900'"
-                class="flex items-center justify-between p-4 rounded-lg shadow-lg">
-                <label class="flex items-center space-x-4 cursor-pointer">
-                    <input type="checkbox" checked
-                        :class="isDark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-300'"
-                        class="w-6 h-6 text-indigo-500 rounded" />
-                    <span class="line-through text-lg select-none">Finish report</span>
-                </label>
-                <div class="flex space-x-4">
-                    <button :class="isDark ? 'text-indigo-400' : 'text-indigo-600'"
-                        class="text-sm font-semibold hover:underline">Edit</button>
-                    <button class="text-red-500 text-sm font-semibold hover:underline">Delete</button>
-                </div>
-            </li>
 
-            <li :class="isDark
-                ?
-                'bg-gray-800 border-gray-700 text-gray-300' :
-                'bg-gray-100 border-gray-200 text-gray-900'"
-                class="flex items-center justify-between p-4 rounded-lg shadow-lg">
-                <label class="flex items-center space-x-4 cursor-pointer">
-                    <input type="checkbox" :class="isDark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-300'"
-                        class="w-6 h-6 text-indigo-500 rounded" />
-                    <span class="text-lg select-none">Email client</span>
-                </label>
-                <div class="flex space-x-4">
-                    <button :class="isDark ? 'text-indigo-400' : 'text-indigo-600'"
-                        class="text-sm font-semibold hover:underline">Edit</button>
-                    <button class="text-red-500 text-sm font-semibold hover:underline">Delete</button>
-                </div>
-            </li>
+            @foreach ($tasks as $task)
+                <li :class="isDark
+                    ?
+                    'bg-gray-800 border-gray-700 text-gray-300' :
+                    'bg-gray-100 border-gray-200 text-gray-900'"
+                    class="flex items-center justify-between p-4 rounded-lg shadow-lg">
+
+                    <form action="{{ route('tasks.toggle', $task->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <button type="submit">
+                        <label class="flex items-center space-x-4 cursor-pointer">
+                            <input name="status" type="checkbox" value="1"
+                                {{ $task->status === 1 ? 'checked' : '' }}
+                                :class="isDark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-300'"
+                                class="w-6 h-6 text-indigo-500 rounded" />
+
+                            <span type="submit"
+                                class="{{ $task->status === 1 ? 'line-through' : '' }} text-lg select-none">
+                                {{ $task->title }}
+                            </span>
+                        </label>
+                        </button>
+
+                    </form>
+
+                    <div class="flex space-x-4">
+                        <button :class="isDark ? 'text-indigo-400' : 'text-indigo-600'"
+                            class="text-sm font-semibold hover:underline">Edit</button>
+                        <button class="text-red-500 text-sm font-semibold hover:underline">Delete</button>
+                    </div>
+                </li>
+            @endforeach
+
         </ul>
 
-        <form class="mt-8 flex space-x-4" onsubmit="return false;">
-            <input type="text" placeholder="New Task" required
+        <form method="POST" action="{{ route('tasks.store') }}" class="mt-8 flex space-x-4">
+            @csrf
+            <input type="hidden" name="folder_id" value="{{ request()->route('folder')->id }}">
+            <input type="text" name="title" placeholder="New Task" required
                 :class="isDark
                     ?
                     'bg-gray-700 border-gray-600 text-gray-300' :
                     'bg-white border border-gray-300 text-gray-900'"
                 class="flex-1 px-4 py-3 rounded-lg" />
-            <button class="bg-green-600 hover:bg-green-700 text-white px-6 rounded-lg transition-colors duration-200">
+            <button type="submit"
+                class="bg-green-600 hover:bg-green-700 text-white px-6 rounded-lg transition-colors duration-200">
                 Add
             </button>
         </form>

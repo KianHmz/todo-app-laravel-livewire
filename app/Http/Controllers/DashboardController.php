@@ -13,11 +13,12 @@ class DashboardController extends Controller
     public function index(Folder $folder)
     {
         $folders = Folder::all();
+        $tasks = Task::all();
         return view(
             'dashboard.index',
             [
                 'folders' => $folders,
-                'folderTitle' => $folder->title,
+                'tasks' => $tasks,
             ]
         );
     }
