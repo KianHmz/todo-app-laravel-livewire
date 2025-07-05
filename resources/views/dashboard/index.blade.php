@@ -1,6 +1,6 @@
 <x-layouts.dashboard>
 
-    <!-- Sidebar -->
+    <!-- Folders sidebar -->
     <aside :class="isDark ? 'bg-gray-800 border-gray-700' : 'bg-gray-100 border-gray-200'"
         class="w-100 border-r p-6 flex flex-col">
         <h2 :class="isDark ? 'text-indigo-400' : 'text-indigo-600'" class="text-2xl font-semibold mb-6">Folders</h2>
@@ -46,34 +46,24 @@
             </button>
         </form>
     </aside>
+    <!-- end Folders sidebar -->
 
-    <!-- Main content -->
     <main :class="isDark ? 'bg-gray-900' : 'bg-white'"
         class="flex-1 p-8 flex flex-col relative transition-colors duration-300">
 
-        <!-- User dropdown and theme toggle -->
+        <!-- user dropdown & theme toggler -->
         <div class="flex justify-end mb-6 relative z-10 space-x-4">
-            <input type="checkbox" id="user-menu-toggle" class="hidden" />
-            <label for="user-menu-toggle"
-                :class="isDark ? 'bg-gray-800 text-indigo-400 hover:bg-gray-700' :
-                    'bg-gray-100 text-indigo-600 hover:bg-gray-200'"
-                class="flex items-center cursor-pointer select-none rounded-md px-4 py-2 font-semibold transition-colors duration-200">
-                user_name
-                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                    aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-            </label>
-
+            <x-user-drop-down />
             <x-theme-toggler />
         </div>
 
+
+        <!-- Tasks list -->
         <h1 :class="isDark ? 'text-indigo-400' : 'text-indigo-600'" class="text-3xl font-bold mb-8">
             {{ request()->route('folder')?->title }}
         </h1>
 
         <ul class="space-y-5 flex-1 overflow-auto">
-
             @foreach ($tasks as $task)
                 <li :class="isDark
                     ?
@@ -114,9 +104,10 @@
 
                 </li>
             @endforeach
-
         </ul>
+        <!-- end Tasks list-->
 
+        <!-- create task -->
         <form method="POST" action="{{ route('tasks.store') }}" class="mt-8 flex space-x-4">
             @csrf
             <input type="hidden" name="folder_id" value="{{ request()->route('folder')->id }}">
@@ -131,6 +122,8 @@
                 Add
             </button>
         </form>
+        <!-- end create task -->
+
     </main>
 
 </x-layouts.dashboard>

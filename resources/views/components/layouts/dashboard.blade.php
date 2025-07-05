@@ -14,8 +14,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
-        /* Dropdown toggle via hidden checkbox */
-        #user-menu-toggle:checked+label+ul {
+        #user-menu-toggle:checked~.user-dropdown {
             display: block;
         }
     </style>
