@@ -25,6 +25,7 @@ class FolderController extends Controller
 
     public function destroy(Folder $folder)
     {
-        //
+        $folder->delete();
+        return redirect()->back();
     }
 }

@@ -15,11 +15,17 @@
                     class="flex justify-between items-center p-3 rounded-md transition-colors duration-200 font-semibold text-lg
                     {{ request()->route('folder')?->id === $folder->id ? 'shadow-sm shadow-indigo-900' : '' }}">
                     {{ $folder->title }}
-                    <span class="font-semibold" x-text="folder"></span>
+
                     <div class="flex space-x-2">
                         <button :class="isDark ? 'text-indigo-400' : 'text-indigo-600'"
                             class="text-sm font-semibold hover:underline">Edit</button>
-                        <button class="text-red-500 text-sm font-semibold hover:underline">Delete</button>
+
+                        <form action="{{ route('folders.destroy', $folder->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="text-red-500 text-sm font-semibold hover:underline cursor-pointer">Delete</button>
+                        </form>
                     </div>
                 </a>
             @endforeach
@@ -80,7 +86,7 @@
                         @method('PUT')
                         <button type="submit">
                             <label class="flex items-center space-x-4 cursor-pointer">
-                                <input name="status" type="checkbox" value="1"
+                                <input name="status" type="checkbox" disabled
                                     {{ $task->status === 1 ? 'checked' : '' }}
                                     :class="isDark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-300'"
                                     class="w-6 h-6 text-indigo-500 rounded" />
@@ -101,7 +107,8 @@
                         <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-500 text-sm font-semibold hover:underline cursor-pointer">Delete</button>
+                            <button type="submit"
+                                class="text-red-500 text-sm font-semibold hover:underline cursor-pointer">Delete</button>
                         </form>
                     </div>
 
