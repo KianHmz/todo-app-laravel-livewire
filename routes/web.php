@@ -29,5 +29,7 @@ Route::put('/tasks/{task}/update', [TaskController::class, 'update'])->name('tas
 Route::put('/tasks/{task}/toggle', [TaskController::class, 'toggle'])->name('tasks.toggle');
 Route::delete('/tasks/{task}/destroy', [TaskController::class, 'destroy'])->name('tasks.destroy');
 
-
+Route::get('/',function(){
+    return view('welcome');
+});
 

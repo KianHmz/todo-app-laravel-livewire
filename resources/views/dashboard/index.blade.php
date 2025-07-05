@@ -92,7 +92,7 @@
                     <div class="flex space-x-4">
                         <a :class="isDark ? 'text-indigo-400' : 'text-indigo-600'"
                             class="text-sm font-semibold hover:underline cursor-pointer edit-task-btn"
-                            data-id="{{ $task->id }}" data-title="{{ $task->title }}">Edit</a>
+                            ">Edit</a>
 
                         <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
                             @csrf

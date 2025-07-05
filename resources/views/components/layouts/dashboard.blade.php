@@ -9,10 +9,8 @@
 
     <title>To Do App</title>
 
-    {{-- @livewireStyles --}}
+    @livewireStyles
     @vite('resources/css/app.css')
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
     <style>
         #user-menu-toggle:checked~.user-dropdown {
             display: block;
@@ -57,10 +55,7 @@
         </form>
     </x-modal>
 
-    {{-- @livewireScripts --}}
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="{{ asset('js/modal.js') }}"></script>
-
+    @livewireScripts
 </body>
 
 </html>

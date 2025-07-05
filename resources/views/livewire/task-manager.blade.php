@@ -1,4 +1,5 @@
 <div>
+
     <ul class="space-y-5 flex-1 overflow-auto">
 
         @foreach ($tasks as $task)
@@ -8,16 +9,15 @@
                 'bg-gray-100 border-gray-200 text-gray-900'"
                 class="flex items-center justify-between p-4 rounded-lg shadow-lg">
 
-                    <label wire:click="toggleTask({{ $task->id }})"
-                        class="flex items-center space-x-4 cursor-pointer">
-                        <input wire:model="task.status" type="checkbox" {{ $task->status === 1 ? 'checked' : '' }}
-                            :class="isDark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-300'"
-                            class="w-6 h-6 text-indigo-500 rounded" />
+                <label wire:click="toggleTask({{ $task->id }})" class="flex items-center space-x-4 cursor-pointer">
+                    <input wire:model="task.status" type="checkbox" {{ $task->status === 1 ? 'checked' : '' }}
+                        :class="isDark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-300'"
+                        class="w-6 h-6 text-indigo-500 rounded" />
 
-                        <span class="{{ $task->status === 1 ? 'line-through' : '' }} text-lg select-none">
-                            {{ $task->title }}
-                        </span>
-                    </label>
+                    <span class="{{ $task->status === 1 ? 'line-through' : '' }} text-lg select-none">
+                        {{ $task->title }}
+                    </span>
+                </label>
 
                 <div class="flex space-x-4">
                     <button wire:click="edit" :class="isDark ? 'text-indigo-400' : 'text-indigo-600'"
@@ -44,4 +44,5 @@
             Add
         </button>
     </form>
+
 </div>
