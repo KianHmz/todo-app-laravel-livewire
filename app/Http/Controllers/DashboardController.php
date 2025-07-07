@@ -15,7 +15,7 @@ class DashboardController extends Controller
         $folders = Folder::all();
         $tasks = Task::where('folder_id',$folder->id)->get();
         return view(
-            'dashboard.index',
+            'dashboard',
             [
                 'folders' => $folders,
                 'tasks' => $tasks,

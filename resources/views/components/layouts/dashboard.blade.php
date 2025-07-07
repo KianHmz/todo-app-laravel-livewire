@@ -21,13 +21,9 @@
 <body :class="isDark ? 'bg-gray-900 text-gray-300' : 'bg-white text-gray-900'"
     class="h-full flex flex-col transition-colors duration-300">
 
-    <div class="flex flex-1 min-h-0">
+    {{ $slot }}
 
-        {{ $slot }}
-
-    </div>
-
-    <x-modal id="editTaskModal">
+    {{-- <x-modal id="editTaskModal">
         <form id="editTaskForm">
             <input type="hidden" name="task_id" id="task_id">
             <input type="text" name="title" id="title" class="w-full p-2 border rounded mb-4"
@@ -53,7 +49,7 @@
                 <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded">Save</button>
             </div>
         </form>
-    </x-modal>
+    </x-modal> --}}
 
     @livewireScripts
 </body>

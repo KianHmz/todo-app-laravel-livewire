@@ -18,7 +18,8 @@ Route::get('/password/request', function () {
 })->name('password.request');
 
 
-Route::get('/dashboard/{folder}', [DashboardController::class, 'index'])->name('dashboard.index');
+// Route::get('/dashboard/{folder}', [DashboardController::class, 'index'])->name('dashboard.index');
+Route::get('/dashboard', function(){return view('dashboard');})->name('dashboard.index');
 
 Route::post('/folders/store', [FolderController::class, 'store'])->name('folders.store');
 Route::put('/folders/{folder}/update', [FolderController::class, 'update'])->name('folders.update');
