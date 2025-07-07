@@ -7,6 +7,7 @@
 
         <!-- Folders list -->
         <livewire:folders.show />
+        <livewire:folders.update />
 
         <!-- create folder -->
         <livewire:folders.create />
@@ -31,6 +32,7 @@
 
         <!-- Tasks list -->
         <livewire:tasks.show />
+        {{-- <livewire:tasks.update /> --}}
 
         <!-- create task -->
         <livewire:tasks.create />

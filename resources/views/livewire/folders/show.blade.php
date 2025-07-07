@@ -12,13 +12,12 @@
                 {{ $folder->title }}
 
                 <div class="flex space-x-2">
-                    <button :class="isDark ? 'text-indigo-400' : 'text-indigo-600'"
+                    <button wire:click="editFolder( {{ $folder->id }} )"
+                        :class="isDark ? 'text-indigo-400' : 'text-indigo-600'"
                         class="text-sm font-semibold hover:underline">Edit</button>
 
-                    <form wire:submit.prevent="$emit('deleteFolder', {{ $folder->id }})">
-                        <button type="submit"
-                            class="text-red-500 text-sm font-semibold hover:underline cursor-pointer">Delete</button>
-                    </form>
+                    <button wire:click.emit="deleteFolder({{ $folder->id }})"
+                        class="text-red-500 text-sm font-semibold hover:underline cursor-pointer">Delete</button>
                 </div>
             </li>
         @endforeach

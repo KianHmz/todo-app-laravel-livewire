@@ -18,13 +18,13 @@
                 </div>
 
                 <div class="flex space-x-4">
-                    <button :class="isDark ? 'text-indigo-400' : 'text-indigo-600'"
-                        class="text-sm font-semibold hover:underline cursor-pointer edit-task-btn"
-                        wire:click="edit({{ $task->id }})">
+                    <button wire:click="$dispatch('editTask', { id: {{ $task->id }} })"
+                        :class="isDark ? 'text-indigo-400' : 'text-indigo-600'"
+                        class="text-sm font-semibold hover:underline cursor-pointer edit-task-btn">
                         Edit
                     </button>
 
-                    <button wire:click="deleteTask({{ $task->id }})"
+                    <button wire:click.edit="deleteTask({{ $task->id }})"
                         class="text-red-500 text-sm font-semibold hover:underline cursor-pointer">Delete</button>
                 </div>
 

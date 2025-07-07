@@ -23,33 +23,32 @@
 
     {{ $slot }}
 
-    {{-- <x-modal id="editTaskModal">
-        <form id="editTaskForm">
-            <input type="hidden" name="task_id" id="task_id">
-            <input type="text" name="title" id="title" class="w-full p-2 border rounded mb-4"
-                placeholder="Task title">
-            <input type="text" name="status" id="status" class="w-full p-2 border rounded mb-4"
-                placeholder="Task status">
-            <div class="flex justify-end space-x-2">
-                <button type="button" id="cancelEditBtn" class="text-gray-500">Cancel</button>
-                <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded">Save</button>
-            </div>
-        </form>
-    </x-modal>
 
-    <x-modal id="editFolderModal">
-        <form id="editFolderForm">
-            <input type="hidden" name="folder_id" id="folder_id">
-            <input type="text" name="title" id="title" class="w-full p-3 border rounded mb-8 text-white"
-                placeholder="folder title">
-            <input type="text" name="status" id="status" class="w-full p-3 border rounded mb-8 text-white"
-                placeholder="folder status">
+    <!-- Modals -->
+    {{-- <x-modal id="editTaskModal">
+        <form wire:submit.prevent="updateTask">
+            <input type="hidden" wire:model="task_id">
+            <input type="text" wire:model="task_title" class="w-full p-2 border rounded mb-4"
+                placeholder="New Task Title">
             <div class="flex justify-end space-x-2">
-                <button type="button" id="cancelEditBtn" class="text-gray-500">Cancel</button>
+                <button type="button" class="text-gray-500 cancelEditBtn">Cancel</button>
                 <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded">Save</button>
             </div>
         </form>
     </x-modal> --}}
+
+    {{-- <x-modal id="editFolderModal">
+        <form wire:submit.prevent="updateFolder">
+            <input type="hidden" wire:model="folder_id">
+            <input type="text" wire:model="folder_title" class="w-full p-2 border rounded mb-4"
+                placeholder="New Folder Title">
+            <div class="flex justify-end space-x-2">
+                <button type="button" class="text-gray-500 cancelEditBtn">Cancel</button>
+                <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded">Save</button>
+            </div>
+        </form>
+    </x-modal> --}}
+    <!-- end Modals -->
 
     @livewireScripts
 </body>
