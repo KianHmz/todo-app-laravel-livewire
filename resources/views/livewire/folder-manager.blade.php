@@ -1,53 +1,58 @@
 <div>
 
-        <h2 :class="isDark ? 'text-indigo-400' : 'text-indigo-600'" class="text-2xl font-semibold mb-6">Folders</h2>
+    <h2 :class="isDark ? 'text-indigo-400' : 'text-indigo-600'" class="text-2xl font-semibold mb-6">Folders</h2>
 
-        <!-- Folders list -->
-        <ul class="flex-1 overflow-auto space-y-3">
-            @foreach ($folders as $folder)
-                <li wire:click.stop="select({{ $folder->id }})"
-                    :class="isDark
-                        ?
-                        'text-gray-200 hover:bg-indigo-900' :
-                        'text-gray-800 hover:bg-indigo-100'"
-                    class="flex justify-between items-center p-3 rounded-md transition-colors duration-200 font-semibold text-lg
+    <!-- Folders list -->
+    <ul class="flex-1 overflow-auto space-y-3">
+        @foreach ($folders as $folder)
+            <li wire:click.stop="select({{ $folder->id }})"
+                :class="isDark
+                    ?
+                    'text-gray-200 hover:bg-indigo-900' :
+                    'text-gray-800 hover:bg-indigo-100'"
+                class="flex justify-between items-center p-3 rounded-md transition-colors duration-200 font-semibold text-lg cursor-pointer
                     {{ $selectedFolder?->title === $folder->title ? 'shadow-sm shadow-indigo-900' : '' }}
                      ">
 
-                    @if ($editingId === $folder->id)
-                        <input type="text" wire:model.defer="newTitle" class="px-2 py-1 border rounded" />
-                        <div class="space-x-2">
-                            <button wire:click="update" class="text-green-600">save</button>
-                            <button wire:click="cancel" class="text-gray-500">cancel</button>
-                        </div>
-                    @else
-                        <span>{{ $folder->title }}</span>
-
+                @if ($editingId === $folder->id)
+                    <div class="flex space-x-8">
+                        <input type="text" wire:model.defer="newTitle" class="border rounded"
+                            placeholder="New Title" />
                         <div class="flex space-x-2">
-                            <button wire:click.stop="edit( {{ $folder->id }} )"
-                                :class="isDark ? 'text-indigo-400' : 'text-indigo-600'"
-                                class="text-sm font-semibold hover:underline">Edit</button>
-
-                            <button wire:click.stop="destroy({{ $folder->id }})"
-                                class="text-red-500 text-sm font-semibold hover:underline cursor-pointer">Delete</button>
+                            <button wire:click.stop="update"
+                                class="text-sm font-semibold hover:underline cursor-pointer text-green-600">save</button>
+                            <button wire:click.stop="cancel"
+                                class="text-sm font-semibold hover:underline cursor-pointer text-gray-500">cancel</button>
                         </div>
-                    @endif
+                    </div>
+                @else
+                    <span>{{ $folder->title }}</span>
 
-                </li>
-            @endforeach
-        </ul>
+                    <div class="flex space-x-2">
+                        <button wire:click.stop="edit( {{ $folder->id }} )"
+                            :class="isDark ? 'text-indigo-400' : 'text-indigo-600'"
+                            class="text-sm font-semibold hover:underline cursor-pointer">Edit</button>
 
-        <!-- create folder -->
-        <form wire:submit.prevent="create" class="mt-6 flex space-x-3">
-            <input type="text" wire:model="title" placeholder="New Folder" required
-                :class="isDark
-                    ?
-                    'bg-gray-700 border-gray-600 text-gray-300' :
-                    'bg-white border border-gray-300 text-gray-900'"
-                class="flex-1 px-3 py-2 rounded-md" />
-            <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 rounded-md transition-colors duration-200">
-                Add
-            </button>
-        </form>
+                        <button wire:click.stop="destroy({{ $folder->id }})"
+                            class="text-red-500 text-sm font-semibold hover:underline cursor-pointer">Delete</button>
+                    </div>
+                @endif
+
+            </li>
+        @endforeach
+    </ul>
+
+    <!-- create folder -->
+    <form wire:submit.prevent="create" class="mt-6 flex space-x-3">
+        <input type="text" wire:model="title" placeholder="New Folder" required
+            :class="isDark
+                ?
+                'bg-gray-700 border-gray-600 text-gray-300' :
+                'bg-white border border-gray-300 text-gray-900'"
+            class="flex-1 px-3 py-2 rounded-md" />
+        <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 rounded-md transition-colors duration-200 cursor-pointer">
+            Add
+        </button>
+    </form>
 
 </div>
