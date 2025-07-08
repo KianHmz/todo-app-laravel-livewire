@@ -10,6 +10,9 @@ class FolderManager extends Component
     public $folders = [];
     public $selectedFolder = null;
 
+    public $title = '';
+
+
     public function mount()
     {
         $this->loadList();
@@ -27,7 +30,13 @@ class FolderManager extends Component
 
     public function create()
     {
+        $validated = $this->validate([
+            'title' => 'required|max:255'
+        ]);
+        Folder::create($validated);
 
+        $this->reset('title');
+        $this->loadList();
     }
 
     public function edit($id)
@@ -42,7 +51,7 @@ class FolderManager extends Component
 
     public function update()
     {
-
+       
     }
 
     public function render()
