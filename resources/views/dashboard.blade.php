@@ -2,8 +2,13 @@
 
     <div class="flex flex-1 min-h-0">
 
-        <!-- Folders sidebar -->
-        <livewire:folder-manager/>
+        <aside :class="isDark ? 'bg-gray-800 border-gray-700' : 'bg-gray-100 border-gray-200'"
+            class="w-100 border-r p-6 flex flex-col">
+
+            <!-- Folders -->
+            <livewire:folder-manager />
+
+        </aside>
 
 
         <main :class="isDark ? 'bg-gray-900' : 'bg-white'"
@@ -16,22 +21,10 @@
             </div>
 
             <!-- Tasks -->
-            <h1 :class="isDark ? 'text-indigo-400' : 'text-indigo-600'" class="text-3xl font-bold mb-8">
-                {{ $selectedFolder?->title ?? 'Select a Folder' }}
-            </h1>
-
-            <!-- Tasks list -->
-            <livewire:tasks.show />
-            {{-- <livewire:tasks.update /> --}}
-
-            <!-- create task -->
-            <livewire:tasks.create />
-
-            <!-- end Tasks -->
+            <livewire:task-manager />
 
         </main>
 
     </div>
-
 
 </x-layouts.dashboard>

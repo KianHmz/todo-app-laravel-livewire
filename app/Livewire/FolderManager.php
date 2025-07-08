@@ -32,6 +32,7 @@ class FolderManager extends Component
     public function select($id)
     {
         $this->selectedFolder = Folder::findOrFail($id);
+        $this->dispatch('folderSelected', $id);
     }
 
     public function create()

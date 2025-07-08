@@ -1,8 +1,5 @@
 <div>
 
-    <!-- Folders sidebar -->
-    <aside :class="isDark ? 'bg-gray-800 border-gray-700' : 'bg-gray-100 border-gray-200'"
-        class="w-100 border-r p-6 flex flex-col">
         <h2 :class="isDark ? 'text-indigo-400' : 'text-indigo-600'" class="text-2xl font-semibold mb-6">Folders</h2>
 
         <!-- Folders list -->
@@ -52,7 +49,5 @@
                 Add
             </button>
         </form>
-
-    </aside>
 
 </div>
