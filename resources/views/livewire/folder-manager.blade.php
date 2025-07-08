@@ -18,7 +18,8 @@
                      ">
 
                     @if ($editingId === $folder->id)
-                        <input type="text" wire:model.defer="new_title" class="px-2 py-1 border rounded" />
+                        <input type="text" wire:model.defer="newTitle" class="px-2 py-1 border rounded"
+                          />
                         <div class="space-x-2">
                             <button wire:click="update" class="text-green-600">save</button>
                             <button wire:click="cancel" class="text-gray-500">cancel</button>
@@ -31,7 +32,7 @@
                                 :class="isDark ? 'text-indigo-400' : 'text-indigo-600'"
                                 class="text-sm font-semibold hover:underline">Edit</button>
 
-                            <button wire:click.stop="destroy({{ $folder->id }})"
+                            <button wire:click="destroy({{ $folder->id }})"
                                 class="text-red-500 text-sm font-semibold hover:underline cursor-pointer">Delete</button>
                         </div>
                     @endif

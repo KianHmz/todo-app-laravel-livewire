@@ -12,6 +12,9 @@ class FolderManager extends Component
 
     public $title = '';
 
+    public $editingId = null;
+    public $newTitle = '';
+
 
     public function mount()
     {
@@ -25,15 +28,15 @@ class FolderManager extends Component
 
     public function select($id)
     {
-        $this->selectedFolder = Folder::find($id);
+        $this->selectedFolder = Folder::findOrFail($id);
     }
 
     public function create()
     {
-        $validated = $this->validate([
+        $this->validate([
             'title' => 'required|max:255'
         ]);
-        Folder::create($validated);
+        Folder::create(['title' => $this->title]);
 
         $this->reset('title');
         $this->loadList();
@@ -41,17 +44,25 @@ class FolderManager extends Component
 
     public function edit($id)
     {
-
+        $this->editingId = $id;
+        $folder = Folder::findOrFail($id);
+        $this->newTitle = $folder->title;
     }
 
     public function cancel()
     {
-
+        $this->reset('editingId', 'newTitle');
     }
 
     public function update()
     {
-       
+        $this->validate([
+            'newTitle' => 'required|max:255'
+        ]);
+        Folder::findOrFail($this->editingId)->update(['title' => $this->newTitle]);
+
+        $this->reset('editingId', 'newTitle');
+        $this->loadList();
     }
 
     public function render()
