@@ -18,30 +18,29 @@
                      ">
 
                     @if ($editingId === $folder->id)
-                        <input type="text" wire:model.defer="new_title" class="px-2 py-1 border rounded" />
+                        <input type="text" wire:model.defer="folder_title" class="px-2 py-1 border rounded" />
                         <div class="space-x-2">
-                            <button wire:click="update" class="text-green-600">save</button>
-                            <button wire:click="cancel" class="text-gray-500">cancel</button>
+                            <button wire:click="updateFolder" class="text-green-600">save</button>
+                            <button wire:click="cancelEdit" class="text-gray-500">cancel</button>
                         </div>
                     @else
                         <span>{{ $folder->title }}</span>
 
                         <div class="flex space-x-2">
-                            <button wire:click.stop="edit( {{ $folder->id }} )"
+                            <button wire:click.stop="editFolder( {{ $folder->id }} )"
                                 :class="isDark ? 'text-indigo-400' : 'text-indigo-600'"
                                 class="text-sm font-semibold hover:underline">Edit</button>
 
-                            <button wire:click.stop="destroy({{ $folder->id }})"
+                            <button wire:click="deleteFolder({{ $folder->id }})"
                                 class="text-red-500 text-sm font-semibold hover:underline cursor-pointer">Delete</button>
                         </div>
                     @endif
-
                 </li>
             @endforeach
         </ul>
 
         <!-- create folder -->
-        <form wire:submit.prevent="create" class="mt-6 flex space-x-3">
+        <form wire:submit.prevent="save" class="mt-6 flex space-x-3">
             <input type="text" wire:model="title" placeholder="New Folder" required
                 :class="isDark
                     ?
