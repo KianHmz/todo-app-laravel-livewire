@@ -87,6 +87,12 @@ class TaskManager extends Component
         $this->loadList();
     }
 
+    public function destroy($id)
+    {
+        Task::findOrFail($id)->delete();
+        $this->loadList();
+    }
+
     public function render()
     {
         return view('livewire.task-manager');
