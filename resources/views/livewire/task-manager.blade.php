@@ -40,9 +40,20 @@
     </ul>
 
     <!-- create task -->
-    <livewire:tasks.create />
+    @if ($folder)
+        <form wire:submit.prevent="create" class="mt-6 flex space-x-3">
+            <input type="text" wire:model="title" placeholder="New Task" required
+                :class="isDark
+                    ?
+                    'bg-gray-700 border-gray-600 text-gray-300' :
+                    'bg-white border border-gray-300 text-gray-900'"
+                class="flex-1 px-3 py-2 rounded-md" />
+            <button class="bg-green-600 hover:bg-green-700 text-white px-4 rounded-md transition-colors duration-200">
+                Add
+            </button>
+        </form>
+    @endif
 
     <!-- end Tasks -->
-
 
 </div>

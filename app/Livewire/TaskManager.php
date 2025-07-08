@@ -12,7 +12,10 @@ class TaskManager extends Component
     public $tasks = [];
     public $folder = null;
 
-    protected $listeners = ['folderSelected' => 'selectFolder', 'load'];
+    // for create
+    public $title = '';
+
+    protected $listeners = ['folderSelected' => 'selectFolder'];
 
 
     public function mount()
@@ -32,6 +35,20 @@ class TaskManager extends Component
             $this->tasks = Task::where('folder_id', $this->folder->id)->get()
             :
             $this->tasks = [];
+    }
+
+    public function create()
+    {
+        $this->validate([
+            'title' => 'required|max:255'
+        ]);
+        Task::create([
+            'folder_id' => $this->folder->id,
+            'title' => $this->title,
+        ]);
+
+        $this->reset('title');
+        $this->load();
     }
 
     public function render()
