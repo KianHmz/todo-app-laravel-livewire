@@ -7,11 +7,14 @@ use Livewire\Component;
 
 class FolderManager extends Component
 {
+    // for read
     public $folders = [];
     public $selectedFolder = null;
 
+    // for create
     public $title = '';
 
+    // for update
     public $editingId = null;
     public $newTitle = '';
 
@@ -62,6 +65,12 @@ class FolderManager extends Component
         Folder::findOrFail($this->editingId)->update(['title' => $this->newTitle]);
 
         $this->reset('editingId', 'newTitle');
+        $this->loadList();
+    }
+
+    public function destroy($id)
+    {
+        Folder::findOrFail($id)->delete();
         $this->loadList();
     }
 
