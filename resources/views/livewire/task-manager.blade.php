@@ -6,7 +6,7 @@
     </h1>
 
     <!-- Tasks list -->
-    <ul class="space-y-5 flex-1 overflow-auto">
+    <ul class="space-y-5 flex-1 overflow-auto min-h-105">
         @foreach ($tasks as $task)
             <li wire:click.stop="toggleStatus({{ $task->id }})"
                 :class="isDark ?

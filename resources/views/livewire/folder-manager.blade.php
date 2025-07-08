@@ -3,7 +3,7 @@
     <h2 :class="isDark ? 'text-indigo-400' : 'text-indigo-600'" class="text-2xl font-semibold mb-6">Folders</h2>
 
     <!-- Folders list -->
-    <ul class="flex-1 overflow-auto space-y-3">
+    <ul class="flex-1 overflow-auto space-y-3 overflow-auto min-h-130">
         @foreach ($folders as $folder)
             <li wire:click.stop="select({{ $folder->id }})"
                 :class="isDark

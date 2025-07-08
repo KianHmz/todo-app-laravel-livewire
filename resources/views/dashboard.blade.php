@@ -1,6 +1,6 @@
 <x-layouts.dashboard>
 
-    <div class="flex flex-1 min-h-0">
+    <div class="flex flex-1">
 
         <aside :class="isDark ? 'bg-gray-800 border-gray-700' : 'bg-gray-100 border-gray-200'"
             class="w-100 border-r p-6 flex flex-col">
