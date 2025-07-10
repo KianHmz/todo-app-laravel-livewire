@@ -11,7 +11,7 @@
         :class="isDark ? 'bg-gray-800 text-indigo-400 hover:bg-gray-700' :
             'bg-gray-100 text-indigo-600 hover:bg-gray-200'"
         class="flex items-center cursor-pointer select-none rounded-md px-4 py-2 font-semibold transition-colors duration-200">
-        user_name
+        {{ $user }}
         <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
             aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />

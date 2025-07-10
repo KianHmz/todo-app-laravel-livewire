@@ -16,7 +16,7 @@
 
             <!-- user dropdown & theme toggler -->
             <div class="flex justify-end mb-6 relative z-10 space-x-4">
-                <x-user-drop-down />
+                <x-user-drop-down user="{{ auth()->user()->name }}" />
                 <x-theme-toggler />
             </div>
 

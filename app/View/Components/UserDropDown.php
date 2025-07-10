@@ -8,12 +8,11 @@ use Illuminate\View\Component;
 
 class UserDropDown extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public $user = null;
+
+    public function __construct($user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
