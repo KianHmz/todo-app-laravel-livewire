@@ -20,7 +20,6 @@
 
         <div class="flex items-center justify-between">
             <x-form.remember-me />
-            <x-form.forget-password href="{{ route('auth.password.request') }}" />
         </div>
 
         <x-form.button name="Login" value="Login" type="submit" />

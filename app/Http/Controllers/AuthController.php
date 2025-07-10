@@ -22,16 +22,28 @@ class AuthController extends Controller
 
         User::create($validated);
 
-        return redirect()->route('auth.login')->with('msg', 'Your registration was successful. Please login to your account.');
+        return redirect()->route('login')->with('msg', 'Registration was successful. Login to your account.');
     }
 
     public function login()
     {
-
+        return view('auth.login');
     }
 
-    public function read()
+    public function read(Request $request)
     {
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
+        $remember = $request->has('remember');
+
+        if (auth()->attempt($validated, $remember)) {
+            $request->session()->regenerate();
+            return redirect()->route('dashboard');
+        }
+
+        return redirect()->back()->withErrors(['email' => 'The provided credentials do not match our records.'])->onlyInput('email');
     }
 }

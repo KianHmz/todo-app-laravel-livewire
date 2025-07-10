@@ -3,7 +3,7 @@
     <x-form.session-message/>
 
     <x-form.title value="Register" />
-    <form method="POST" action="{{ route('auth.register') }}" class="space-y-4">
+    <form method="POST" action="{{ route('register') }}" class="space-y-4">
         @csrf
 
         <div>
@@ -38,7 +38,7 @@
 
     <p class="text-center text-sm mt-4" :class="isDark ? 'text-gray-400' : 'text-gray-600'">
         Already have an account?
-        <a href="{{ route('auth.login') }}" class="text-indigo-600 dark:text-indigo-400 hover:underline font-semibold">
+        <a href="{{ route('login') }}" class="text-indigo-600 dark:text-indigo-400 hover:underline font-semibold">
             Login
         </a>
     </p>
