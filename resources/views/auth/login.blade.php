@@ -1,5 +1,7 @@
 <x-layouts.auth title="Login">
 
+    <x-form.session-message/>
+
     <x-form.title value="Login" />
     <form method="POST" action="{{ route('login') }}" class="space-y-4">
         @csrf
