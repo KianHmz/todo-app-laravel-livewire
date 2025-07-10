@@ -18,11 +18,16 @@
         </svg>
     </label>
 
+
     <div :class="isDark ? 'bg-gray-800 text-indigo-400 hover:bg-gray-700' :
         'bg-gray-100 text-indigo-600 hover:bg-gray-200'"
         class="user-dropdown absolute right-0 mt-2 w-40 rounded-md shadow-lg z-10 hidden">
-        <button class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
-            Logout
-        </button>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+                Logout
+            </button>
+        </form>
     </div>
+
 </div>
