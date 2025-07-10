@@ -1,23 +1,23 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\FolderController;
-use App\Http\Controllers\TaskController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
 
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
+// Auth
 
-Route::get('/password/request', function () {
-    return view('welcome');
-})->name('password.request');
+Route::get('register', [AuthController::class, 'register']);
+Route::post('register', [AuthController::class, 'store'])->name('auth.register');
 
+Route::get('login', [AuthController::class, 'login']);
+Route::post('login', [AuthController::class, 'read'])->name('auth.login');
+
+Route::post('/password/request', [AuthController::class, 'password'])->name('auth.password.request');
+
+
+// Dashboard
 
 Route::get('/', function () {
-    return view('dashboard'); })->name('dashboard.index');
+    return view('dashboard');
+})->name('dashboard.index');
 
