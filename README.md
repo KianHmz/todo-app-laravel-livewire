@@ -8,7 +8,8 @@
 
 ## Built With
 
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" width="30"/> MYSQL 
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="30" alt="PostgreSQL" /> PostgreSQL
+ 
 
 <img src="https://cdn.worldvectorlogo.com/logos/laravel-2.svg" alt="Laravel" width="30"/> Laravel
 
